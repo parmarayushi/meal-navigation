@@ -3,8 +3,18 @@ import CategoryGridTile from "../components/CategoryGrisTile";
 import { CATEGORIES } from "../data/data";
 
 export default function CategoriesScreen({ navigation }) {
-  function pressHandler() {
-    navigation.navigate("MealsOverview");
+  function renderCategoryItem(itemData) {
+    function pressHandler() {
+      navigation.navigate("MealsOverview", { categoryId: itemData.item.id });
+    }
+
+    return (
+      <CategoryGridTile
+        title={itemData.item.title}
+        color={itemData.item.color}
+        onPress={pressHandler}
+      />
+    );
   }
 
   return (
@@ -12,13 +22,7 @@ export default function CategoriesScreen({ navigation }) {
       data={CATEGORIES}
       keyExtractor={(item) => item.id}
       numColumns={2}
-      renderItem={(itemData) => (
-        <CategoryGridTile
-          title={itemData.item.title}
-          color={itemData.item.color}
-          onPress={pressHandler}
-        />
-      )}
+      renderItem={renderCategoryItem}
     />
   );
 }
