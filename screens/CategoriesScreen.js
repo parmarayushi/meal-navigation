@@ -4,6 +4,7 @@ import { CATEGORIES } from "../data/data";
 
 export default function CategoriesScreen({ navigation }) {
   function renderCategoryItem(itemData) {
+    //------------second way to navigate using navigation prop.
     function pressHandler() {
       navigation.navigate("MealsOverview", { categoryId: itemData.item.id });
     }
